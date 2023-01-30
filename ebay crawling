@@ -1,0 +1,10 @@
+import requests
+from bs4 import BeautifulSoup
+
+URL = "https://www.ebay.com/b/keyword"
+page = requests.get(URL)
+
+soup = BeautifulSoup(page.content, "html.parser")
+keywords = [keyword.get_text() for keyword in soup.find_all("a", class_="kw")]
+
+print(keywords)
